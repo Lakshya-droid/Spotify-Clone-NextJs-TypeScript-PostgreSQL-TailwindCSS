@@ -7,7 +7,10 @@ export const revalidate = 0;
 
 const Liked = async() => {
     const songs = await getLikedSongs();
+    getLikedSongs();
+    console.log("---------------------",songs);
   return (
+  
     <div className="bg-neutral-900
     w-full
     overflow-hidden
@@ -59,7 +62,6 @@ const Liked = async() => {
             </div>
           </div>
       </Header>
-      <LikedContent songs={songs}/>
     </div>
   )
 }

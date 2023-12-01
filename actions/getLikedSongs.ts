@@ -2,34 +2,30 @@ import { Song } from "@/types"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
 
-const getLikedSongs = async(): Promise<Song[]>=>{
+const getLikedSongs = async(): Promise<void>=>{
   const supabase = createServerComponentClient({
       cookies: cookies
   });
+  console.log(cookies);
 
   const {
       data:{
           session
       }
   } = await supabase.auth.getSession();
-
-  const {data,error} = await supabase
-  .from('liked_songs')
-  .select('*,songs(*)')
-  .eq('user_id',session?.user?.id)
-  .order('created_at',{ascending: false});
-
-  if(error){
-      console.log(error);
-      return [];
-  }
-  if(!data){
-      return []
+  try {
+    console.log("here");
+    const { data, error } = await supabase.from("groups").select();
+console.log("-----------",data,error)
+    if (error) {
+      console.error('Error seeding data:', error);
+    } else {
+      console.log('Data seeded successfully:', data);
+    }
+  } catch (error:any) {
+    console.error('Error seeding data:', error.message);
   }
 
-  return data.map((item)=>({
-      ...item.songs
-  }));
 }
 
 export default getLikedSongs;
