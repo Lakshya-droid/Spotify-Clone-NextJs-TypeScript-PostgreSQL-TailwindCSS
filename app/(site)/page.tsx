@@ -1,55 +1,27 @@
 
-import Header from "@/components/Header"
-import ListItem from "@/components/ListItem"
-import PageContent from "./components/PageContent";
-import getLikedSongs from "@/actions/getLikedSongs";
+import Header from "@/components/Header";
+import ListItem from "@/components/ListItem";
+import { Groups } from "@/types";
+
+import {HiUserGroup} from 'react-icons/hi';
+
 export const revalidate = 0;
 
-export default async function Home() {
-  const songs = await getLikedSongs();
-  console.log("Laqsh");
+const Home = async () => {
 
   return (
     <div className="
-    bg-neutral-900
-    rounded-lg
-    h-full
-    w-full
-    overflow-hidden
-    overflow-y-auto
+      bg-white
+      rounded-lg
+      h-full
+      w-full
+      overflow-hidden
+      overflow-y-auto
     ">
-      <Header>
-        <div className="bm-2">
-          <h1 className="
-          text-white
-          text-3xl
-          font-semibold
-          ">
-            Welcome back
-          </h1>
-          <div className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          xl:grid-cols-3
-          2xl:grid-cols-4
-          gap-3
-          mt-4
-          ">
-             <ListItem 
-             image="/images/liked.png"
-             name="Liked Songs"
-             href="liked"
-             />
-          </div>
-        </div>
-      </Header>
-      <div className="mt-2
-      mb-7
-      px-6
-      ">
-
-      </div>
+      
+      
     </div>
-  )
-}
+  );
+};
+
+export default Home;
